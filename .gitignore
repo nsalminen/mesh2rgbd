@@ -268,5 +268,3 @@ dmypy.json
 
 # Project-specific
 results/
-/data/*
-!/data/BFM/Out/*
