@@ -67,7 +67,7 @@ if not os.path.exists(save_folder_rgb):
 if not os.path.exists(save_folder_depth):
     os.makedirs(save_folder_depth)
 
-ply_vertices, ply_triangles = load_ply("data/teapot.ply")  # Needs to be scaled to be visible
-ply_colors = np.ones(ply_vertices.shape)
+ply_vertices, ply_triangles, ply_colors = load_ply("data/teapot_color.ply")  # Needs to be scaled to be visible
+#ply_colors = np.ones(ply_vertices.shape)
 
 project_vertices(ply_vertices, ply_triangles, ply_colors)

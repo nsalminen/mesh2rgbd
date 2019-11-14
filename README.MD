@@ -19,11 +19,17 @@ mesh2rgbd/mesh/        # written in python and c++
 
 - Python packages:
   * numpy 
-  * skimage
+  * skimage   
   * scipy
   * matplotlib
   * cython
   * tiffile
+  
+  * pyrender
+  * scikit-image
+  * plyfile
+  
+ 
   
 ### Usage
 1. Clone the repository

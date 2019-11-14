@@ -164,8 +164,15 @@ def load_ply(path: str) -> Tuple[np.ndarray, np.ndarray]:
         ply_vertices: [nver, 3]
         ply_triangles: [ntri, 3]
     """
-    plydata = PlyData.read(path)
+    plydata = PlyData.read("data/teapot_color.ply")
     tri_data = plydata['face'].data['vertex_indices']
     ply_triangles = np.vstack(tri_data)
     ply_vertices = np.array([plydata['vertex']['x'], plydata['vertex']['y'], plydata['vertex']['z']]).T
-    return ply_vertices, ply_triangles
+
+    ply_colors = np.array([])
+    try:   
+        ply_colors = np.array([plydata['vertex']['red'], plydata['vertex']['green'], plydata['vertex']['blue']]).T
+    except:
+        pass
+    
+    return ply_vertices, ply_triangles, ply_colors
