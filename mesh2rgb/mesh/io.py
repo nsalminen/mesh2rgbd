@@ -156,23 +156,25 @@ def write_obj_with_colors_texture(obj_name, vertices, triangles, colors, texture
     io.imsave(texture_name, texture)
 
 
-def load_ply(path: str) -> Tuple[np.ndarray, np.ndarray]:
+def load_ply(path: str) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """ Load vertices and triangles from .ply file
     Args:
         path: path to file
     Returns:
         ply_vertices: [nver, 3]
         ply_triangles: [ntri, 3]
+        ply_colors: [nver, 3]
     """
-    plydata = PlyData.read("data/teapot_color.ply")
+    plydata = PlyData.read(path)
     tri_data = plydata['face'].data['vertex_indices']
     ply_triangles = np.vstack(tri_data)
     ply_vertices = np.array([plydata['vertex']['x'], plydata['vertex']['y'], plydata['vertex']['z']]).T
 
     ply_colors = np.array([])
-    try:   
+    try:
         ply_colors = np.array([plydata['vertex']['red'], plydata['vertex']['green'], plydata['vertex']['blue']]).T
     except:
+        print("Warning: .ply does not contain color information in expected location.")
         pass
-    
+
     return ply_vertices, ply_triangles, ply_colors
